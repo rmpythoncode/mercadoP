@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+    
+
+{% endblock content %}
+
+<!-- 
+
+<script>
+  const url = 'https://api.mercadopago.com/v1/customers'
+  
+  const createCustomer = async function() {
+    try {
+      const response = await fetch('https://api.mercadopago.com/v1/customers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: "rma@rmcode.org"
+        })        
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  }
+  createCustomer()
+</script>
+
+
+curl -X POST \
+    'https://api.mercadopago.com/v1/customers'\
+    -H 'Content-Type: application/json' \
+       -H 'Authorization: Bearer TEST-7434*********159-03141*********cee51edf8*********f94f589-1*********' \
+    -d '{
+  "address": {
+    "id": "123123",
+    "zip_code": "01234567",
+    "street_name": "Rua Exemplo",
+    "street_number": 123,
+    "city": {}
+  },
+  "date_registered": "2021-10-20T11:37:30.000-04:00",
+  "default_address": "Home",
+  "default_card": "None",
+  "description": "Description del user",
+  "email": "jhon@doe.com",
+  "first_name": "Jhon",
+  "identification": {
+    "type": "CPF",
+    "number": "12345678900"
+  },
+  "last_name": "Doe",
+  "phone": {
+    "area_code": "55",
+    "number": "991234567"
+  }
+}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  const mp = new MercadoPago("{{ MERCADOPAGO_TEST_PUBLIC_KEY }}");
+  console.log('MP: ', mp)
+  
+  const createCustomer = async () => {
+    
+    try {      
+        const customerData = {
+            email: 'customer@example.com', // Replace with the customer's email
+            first_name: 'John', // Replace with the customer's first name
+            last_name: 'Doe', // Replace with the customer's last name
+            phone: {
+                area_code: '11', // Replace with the customer's phone area code
+                number: '987654321' // Replace with the customer's phone number
+            },
+            identification: {
+                type: 'DNI', // Replace with the customer's identification type
+                number: '12345678' // Replace with the customer's identification number
+            },
+            address: {
+                street_name: 'Main St', // Replace with the customer's address street name
+                street_number: 123, // Replace with the customer's address street number
+                zip_code: '1234' // Replace with the customer's address zip code
+            },
+            description: 'Customer description' // Replace with a description for the customer            
+        };
+        console.log("Customer DATA: ", customerData)
+
+        const response = await mp.customers.create(customerData);
+        console.log('Response: ', response)
+        console.log('Customer Created:', response.body);
+    } catch (error) {
+        console.error('Error creating customer:', error);
+    }
+};
+
+createCustomer();
+</script>
+ -->
+
+
+ {% comment %} 
+ <h1>Create Customer</h1>
+    <form id="customerForm">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="Rogerlee" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="Pereira"required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="rp@rpcom" required><br><br>
+
+        <button type="submit">Create Customer</button>
+    </form>
+
+    <script>
+      const customerData = {
+        email: 'customer@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        phone: {
+          area_code: '11',
+          number: '987654321'
+        },
+        address: {
+          zip_code: '1234567',
+          street_name: 'Street Name',
+          street_number: '123'
+        }
+      };
+
+      async function createCustomer(){      
+      const response = await fetch('https://api.mercadopago.com/v1/customers', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer {{ MERCADOPAGO_TEST_ACCESS_TOKEN }}',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },                
+        body: JSON.stringify({ customerData })                
+      }
+      );
+      console.log(customerData)
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('Customer created successfully');
+      } else {
+        alert('Error creating customer: ' + result.message);
+      }
+    }
+    createCustomer()
+        
+    </script>
+
+ {% endcomment %}
